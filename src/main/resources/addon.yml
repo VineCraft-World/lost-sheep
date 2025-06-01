@@ -1,0 +1,14 @@
+name: LostSheep
+version: ${version}${build.number}
+main: world.vinecraft.lostsheep.LostSheepAddon
+icon: WHITE_WOOL
+api-version: 1.21.5
+
+authors: [tastybento]
+description: Lost sheep adventure
+
+
+permissions:
+  'lostsheep.lost':
+    description: Allows
+    default: op

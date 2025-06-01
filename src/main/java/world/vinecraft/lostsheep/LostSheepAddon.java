@@ -1,0 +1,73 @@
+package world.vinecraft.lostsheep;
+
+import world.bentobox.bentobox.api.addons.Addon;
+import world.bentobox.bentobox.api.configuration.Config;
+
+
+/**
+ * IslandFlyAddon main class. Enables addon.
+ */
+public class LostSheepAddon extends Addon {
+    /**
+     * Settings object for IslandFlyAddon
+     */
+    private Settings settings;
+
+    /**
+     * Executes code when loading the addon. This is called before {@link #onEnable()}. This should preferably
+     * be used to setup configuration and worlds.
+     */
+    @Override
+    public void onLoad()
+    {
+        super.onLoad();
+        // Save default config.yml
+        this.saveDefaultConfig();
+        // Load the plugin's config
+        this.settings = new Config<>(this, Settings.class).loadConfigObject();
+        this.loadSettings();
+    }
+
+    /**
+     * Loads addon settings and hooks into available GameModes
+     */
+    @Override
+    public void onEnable() {
+
+
+            // Register Listeners
+            // registerListener(new FlyListener(this));
+
+    }
+
+
+    /**
+     * Disable addon.
+     */
+    @Override
+    public void onDisable() {
+        //Nothing to do here
+    }
+
+    /**
+     * This method loads addon configuration settings in memory.
+     */
+    private void loadSettings() {
+
+        if (this.settings == null) {
+            // Disable
+            this.logError("Settings could not load! Addon disabled.");
+            this.setState(State.DISABLED);
+        }
+    }
+
+
+    /**
+     * Get addon settings
+     * @return settings
+     */
+    public Settings getSettings() {
+        return settings;
+    }
+
+}

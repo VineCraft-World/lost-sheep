@@ -1,0 +1,9 @@
+name: VineCraft-LostSheep
+main: world.viecraft.lostsheep.LostSheepPladdon
+version: ${project.version}${build.number}
+api-version: "1.21"
+
+authors: [tastybento]
+contributors: ["The VineCraft Community"]
+website: https://vinecraft.world
+description: ${project.description}

@@ -1,7 +1,12 @@
 package world.vinecraft.lostsheep;
 
+import org.bukkit.World;
+import org.bukkit.World.Environment;
+import org.bukkit.WorldCreator;
+
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.configuration.Config;
+import world.vinecraft.lostsheep.commands.WanderCommand;
 
 
 /**
@@ -12,6 +17,8 @@ public class LostSheepAddon extends Addon {
      * Settings object for IslandFlyAddon
      */
     private Settings settings;
+    private World overWorld;
+    private World netherWorld;
 
     /**
      * Executes code when loading the addon. This is called before {@link #onEnable()}. This should preferably
@@ -37,7 +44,11 @@ public class LostSheepAddon extends Addon {
 
             // Register Listeners
             // registerListener(new FlyListener(this));
-
+            // Make the world if it doesn't exist
+            overWorld = WorldCreator.name(getSettings().getWorldName()).environment(Environment.NORMAL).createWorld();
+            netherWorld = WorldCreator.name(getSettings().getWorldName()).environment(Environment.NETHER).createWorld();
+            //ommand
+            new WanderCommand(this, "getlost");
     }
 
 
@@ -68,6 +79,20 @@ public class LostSheepAddon extends Addon {
      */
     public Settings getSettings() {
         return settings;
+    }
+
+    /**
+     * @return the overWorld
+     */
+    public World getOverWorld() {
+        return overWorld;
+    }
+
+    /**
+     * @return the netherWorld
+     */
+    public World getNetherWorld() {
+        return netherWorld;
     }
 
 }

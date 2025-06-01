@@ -9,7 +9,7 @@
     <version>${revision}</version>
     <packaging>jar</packaging>
 
-    <name>IslandFly</name>
+    <name>LostSheep</name>
     <description>Add-on for BentoBox to provide a lost sheep adventure.</description>
     <url>https://github.com/VineCraftWorld/LostSheep</url>
     <inceptionYear>2025</inceptionYear>

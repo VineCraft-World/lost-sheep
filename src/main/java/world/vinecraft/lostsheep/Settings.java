@@ -13,6 +13,11 @@ import world.bentobox.bentobox.api.configuration.StoreAt;
 public class Settings implements ConfigObject
 {
     @ConfigComment("")
+    @ConfigComment("World where the adventure will be held.")
+    @ConfigEntry(path = "world-name")
+    private String worldName = "lost-sheep-world";
+
+    @ConfigComment("")
     @ConfigComment("Range beyond which the sheep must be. Default is 5000 blocks.")
     @ConfigEntry(path = "range")
     private int range = 5000;
@@ -29,6 +34,20 @@ public class Settings implements ConfigObject
      */
     public void setRange(int range) {
         this.range = range;
+    }
+
+    /**
+     * @return the worldName
+     */
+    public String getWorldName() {
+        return worldName;
+    }
+
+    /**
+     * @param worldName the worldName to set
+     */
+    public void setWorldName(String worldName) {
+        this.worldName = worldName;
     }
     
     

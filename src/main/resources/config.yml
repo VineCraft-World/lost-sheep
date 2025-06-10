@@ -1,2 +1,37 @@
 # LostSheep Configuration ${version}
 # This config file is dynamic and saved when the server is shutdown.
+
+world-name: lost-sheep-world
+range: 5000
+
+lies:
+  - You're Not Good Enough
+  - God Doesn't Really Care
+  - You'll Never Change
+  - No One Loves You
+  - You're All Alone
+  - This Is Who You Are Forever
+  - God Can't Forgive That
+  - Your Worth = Your Looks
+  - God’s Too Busy for You
+  - You Don’t Matter
+  - Nobody Would Miss You
+  - You’re Beyond Help
+  - Happiness Comes First
+  - Follow Your Heart Always
+  - You Make Your Own Truth
+  - Church Is Just a Show
+  - Bible's Not Relevant Now
+  - You Need to Be Perfect
+  - God Wants You to Be Rich
+  - Your Mistakes Define You
+  - You Can Fix It All Alone
+  - God’s Love Must Be Earned
+  - If It Feels Right, Do It
+  - Faith Is for the Weak
+  - This Sin Is Too Fun to Quit
+  - God’s Holding You Back
+  - You’re Better Than Them
+  - You’ll Never Be Free
+  - It’s Too Late for You
+  - You Have to Hide That

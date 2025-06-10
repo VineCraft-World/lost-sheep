@@ -6,7 +6,9 @@ import org.bukkit.WorldCreator;
 
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.configuration.Config;
+import world.vinecraft.lostsheep.commands.EquipCommand;
 import world.vinecraft.lostsheep.commands.WanderCommand;
+import world.vinecraft.lostsheep.listeners.MonsterSpawnListener;
 
 
 /**
@@ -19,6 +21,7 @@ public class LostSheepAddon extends Addon {
     private Settings settings;
     private World overWorld;
     private World netherWorld;
+    private WanderCommand wander;
 
     /**
      * Executes code when loading the addon. This is called before {@link #onEnable()}. This should preferably
@@ -43,12 +46,14 @@ public class LostSheepAddon extends Addon {
 
 
             // Register Listeners
+            registerListener(new MonsterSpawnListener(this));
             // registerListener(new FlyListener(this));
             // Make the world if it doesn't exist
             overWorld = WorldCreator.name(getSettings().getWorldName()).environment(Environment.NORMAL).createWorld();
             netherWorld = WorldCreator.name(getSettings().getWorldName()).environment(Environment.NETHER).createWorld();
-            //ommand
-            new WanderCommand(this, "getlost");
+            // Commands
+            wander = new WanderCommand(this, "getlost");
+            new EquipCommand(this, "equip");
     }
 
 
@@ -57,7 +62,9 @@ public class LostSheepAddon extends Addon {
      */
     @Override
     public void onDisable() {
-        //Nothing to do here
+        if (wander != null) {
+            wander.onDisable();
+        }
     }
 
     /**

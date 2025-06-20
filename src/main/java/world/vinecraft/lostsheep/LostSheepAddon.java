@@ -1,14 +1,19 @@
 package world.vinecraft.lostsheep;
 
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
+import org.eclipse.jdt.annotation.NonNull;
 
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.configuration.Config;
 import world.vinecraft.lostsheep.commands.EquipCommand;
+import world.vinecraft.lostsheep.commands.SetDestinationCommand;
 import world.vinecraft.lostsheep.commands.WanderCommand;
-import world.vinecraft.lostsheep.listeners.MonsterSpawnListener;
+import world.vinecraft.lostsheep.listeners.BossBarListener;
+import world.vinecraft.lostsheep.listeners.LeashListener;
+import world.vinecraft.lostsheep.listeners.MonsterListener;
 
 
 /**
@@ -22,6 +27,10 @@ public class LostSheepAddon extends Addon {
     private World overWorld;
     private World netherWorld;
     private WanderCommand wander;
+    private @NonNull Location destination;
+    private LeashListener leashListener;
+    private ScoreManager scoreManager;
+    private BossBarListener bossBar;
 
     /**
      * Executes code when loading the addon. This is called before {@link #onEnable()}. This should preferably
@@ -43,10 +52,14 @@ public class LostSheepAddon extends Addon {
      */
     @Override
     public void onEnable() {
-
-
             // Register Listeners
-            registerListener(new MonsterSpawnListener(this));
+            bossBar = new BossBarListener(this);
+            registerListener(bossBar);
+            leashListener = new LeashListener(this);
+            registerListener(leashListener);
+            scoreManager = new ScoreManager(this);
+            registerListener(scoreManager);
+            registerListener(new MonsterListener(this));
             // registerListener(new FlyListener(this));
             // Make the world if it doesn't exist
             overWorld = WorldCreator.name(getSettings().getWorldName()).environment(Environment.NORMAL).createWorld();
@@ -54,6 +67,7 @@ public class LostSheepAddon extends Addon {
             // Commands
             wander = new WanderCommand(this, "getlost");
             new EquipCommand(this, "equip");
+            new SetDestinationCommand(this, "setdestination");
     }
 
 
@@ -62,9 +76,7 @@ public class LostSheepAddon extends Addon {
      */
     @Override
     public void onDisable() {
-        if (wander != null) {
-            wander.onDisable();
-        }
+
     }
 
     /**
@@ -100,6 +112,39 @@ public class LostSheepAddon extends Addon {
      */
     public World getNetherWorld() {
         return netherWorld;
+    }
+
+    public void setDestination(@NonNull Location location) {
+        this.destination = location;
+
+    }
+
+    /**
+     * @return the destination
+     */
+    public Location getDestination() {
+        return destination;
+    }
+
+    /**
+     * @return the leashListener
+     */
+    public LeashListener getLeashListener() {
+        return leashListener;
+    }
+
+    /**
+     * @return the scoreManager
+     */
+    public ScoreManager getScoreManager() {
+        return scoreManager;
+    }
+
+    /**
+     * @return the bossBar
+     */
+    public BossBarListener getBossBar() {
+        return bossBar;
     }
 
 }

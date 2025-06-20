@@ -28,13 +28,13 @@ import world.vinecraft.lostsheep.LostSheepAddon;
 /**
  * This class will name monsters and make they susceptible to the belt of truth
  */
-public class MonsterSpawnListener implements Listener {
+public class MonsterListener implements Listener {
 
     private NamespacedKey key = new NamespacedKey(BentoBox.getInstance(), "belt-of-truth");
 
     private final LostSheepAddon addon;
 
-    public MonsterSpawnListener(LostSheepAddon addon) {
+    public MonsterListener(LostSheepAddon addon) {
         super();
         this.addon = addon;
     }
